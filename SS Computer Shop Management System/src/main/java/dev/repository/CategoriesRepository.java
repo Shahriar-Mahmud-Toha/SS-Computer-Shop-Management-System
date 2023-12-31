@@ -1,6 +1,7 @@
 package dev.repository;
 
 import dev.domain.Categories;
+import org.hibernate.Hibernate;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -25,18 +26,18 @@ public class CategoriesRepository {
     }
 
 
-//    public int getCategoryIdByName(String categoryName) {
-//        Session session = sessionFactory.getCurrentSession();
-//        Query<Integer> query = session.createQuery("SELECT id FROM Categories WHERE name = :categoryName", Integer.class);
-//        query.setParameter("categoryName", categoryName);
-//        Integer categoryId = query.uniqueResult();
-//
-//        if (categoryId != null) {
-//            return categoryId;
-//        } else {
-//            // Handle the case where the category is not found
-//            return -1; // Or throw an exception
-//        }
-//    }
+    public int getCategoryIdByName(String categoryName) {
+        Session session = sessionFactory.getCurrentSession();
+        Query<Integer> query = session.createQuery("SELECT id FROM Categories WHERE name = :categoryName", Integer.class);
+        query.setParameter("categoryName", categoryName);
+        Integer categoryId = query.uniqueResult();
+
+        if (categoryId != null) {
+            return categoryId;
+        } else {
+            // Handle the case where the category is not found
+            return -1; // Or throw an exception
+        }
+    }
 
 }

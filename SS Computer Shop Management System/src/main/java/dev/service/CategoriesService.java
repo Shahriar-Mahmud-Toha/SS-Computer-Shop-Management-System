@@ -20,7 +20,7 @@ public class CategoriesService {
         return categoriesRepository.getAllCategories();
     }
 
-//    public int getCategoryIdByName(String category) {
-//        return categoriesRepository.getCategoryIdByName(category);
-//    }
+    public int getCategoryIdByName(String category) {
+        return categoriesRepository.getCategoryIdByName(category);
+    }
 }
