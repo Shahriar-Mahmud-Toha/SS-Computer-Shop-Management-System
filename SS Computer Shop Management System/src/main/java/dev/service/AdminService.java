@@ -33,4 +33,7 @@ public class AdminService {
     public boolean deleteAdminById(int id) {
         return adminRepository.deleteAdminById(id);
     }
+    public boolean deleteAdminByEmail(String email) {
+        return adminRepository.deleteAdminByEmail(email);
+    }
 }

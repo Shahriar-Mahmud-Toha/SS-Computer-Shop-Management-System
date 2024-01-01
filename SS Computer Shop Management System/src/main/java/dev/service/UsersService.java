@@ -1,8 +1,7 @@
 package dev.service;
 
-import dev.domain.Categories;
+import dev.domain.Admin;
 import dev.domain.User;
-import dev.repository.CategoriesRepository;
 import dev.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
@@ -24,5 +23,8 @@ public class UsersService {
 
     public String getUserPasswordByEmail(String email) {
         return userRepository.getUserPasswordByEmail(email);
+    }
+    public User getUserByEmail(String email){
+        return userRepository.findByEmail(email);
     }
 }

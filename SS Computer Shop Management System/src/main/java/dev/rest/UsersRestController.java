@@ -1,11 +1,10 @@
 package dev.rest;
 
-import dev.domain.Categories;
+import dev.domain.Admin;
 import dev.domain.User;
-import dev.service.CategoriesService;
 import dev.service.UsersService;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.sql.SQLException;
@@ -24,5 +23,8 @@ public class UsersRestController {
     public List<User> getAllUsers() throws SQLException {
         return usersService.getAllUsers();
     }
-
+    @GetMapping("/users/{email}")
+    public User getUserByEmail(@PathVariable String email) throws SQLException {
+        return usersService.getUserByEmail(email);
+    }
 }

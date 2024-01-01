@@ -15,9 +15,11 @@ import java.util.List;
 @RestController
 public class AdminRestController {
     private AdminService adminService;
+    private UsersService usersService;
 
-    public AdminRestController(AdminService adminService)  {
+    public AdminRestController(AdminService adminService, UsersService usersService)  {
         this.adminService = adminService;
+        this.usersService = usersService;
     }
 
     @GetMapping("/admins")
@@ -34,6 +36,9 @@ public class AdminRestController {
             return "failed";
         }
         else {
+            if(usersService.getUserByEmail(admin.getEmail())==null){
+                return "Account Not Registered";
+            }
             if(adminService.getAdminByEmail(admin.getEmail()) == null){
                 adminService.create(admin);
                 return "Success";
@@ -42,7 +47,15 @@ public class AdminRestController {
         }
     }
     @PostMapping("/admins/update")
-    public String updateAdmin(@RequestBody Admin admin) throws SQLException {
+    public String updateAdmin(@Valid @RequestBody Admin admin, BindingResult bindingResult) throws SQLException {
+        if (bindingResult.hasErrors()) {
+            return "Invalid Model Format";
+        }
+        var data = adminService.getAdminByEmail(admin.getEmail());
+        if(data==null){
+            return "No Entry Found for this email";
+        }
+        admin.setId(data.getId());
         adminService.updateAdmin(admin);
         return "Success";
     }
@@ -52,5 +65,17 @@ public class AdminRestController {
             return "Success";
         }
         return "Failed";
+    }
+    @GetMapping("/admins/deleteByEmail/{email}")
+    public String deleteAdminByEmail(@PathVariable String email) throws SQLException {
+        try {
+            if(adminService.deleteAdminByEmail(email)){
+                return "Success";
+            }
+            return "No Email Found";
+        }
+        catch (Exception exception){
+            return exception.getMessage();
+        }
     }
 }

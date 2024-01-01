@@ -8,6 +8,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
 
+import javax.persistence.NoResultException;
 import javax.persistence.criteria.CriteriaBuilder;
 import java.util.List;
 
@@ -22,7 +23,6 @@ public class UserRepository {
     public List<User> getAllUsers() {
         Session session = sessionFactory.getCurrentSession();
         Query<User> userQuery = session.createQuery("FROM User",User.class);
-        System.out.println(userQuery.getResultList());
         return userQuery.getResultList();
     }
 
@@ -30,14 +30,19 @@ public class UserRepository {
         Session session = sessionFactory.getCurrentSession();
         Query<String> query = session.createQuery("SELECT password FROM Users WHERE email = :email", String.class);
         query.setParameter("email", email);
-        String password = query.uniqueResult();
+        String password;
 
-        if (password != null) {
-            return password;
-        } else {
-            return null; // Or throw an exception
+        try {
+            password = query.uniqueResult();
+        } catch (NoResultException e) {
+            // Handle the case where no result is found
+            throw new RuntimeException("No password found for the specified email: " + email, e);
         }
+
+        return password;
     }
+
+
 
     public void save(User user) {
         Session session = sessionFactory.getCurrentSession();
@@ -45,11 +50,14 @@ public class UserRepository {
     }
 
     public User findByEmail(String email) {
-
-        Session session = sessionFactory.getCurrentSession();
-        return session.createQuery("FROM User WHERE email = :email", User.class)
-                .setParameter("email", email)
-                .uniqueResult();
-
+        try {
+            Session session = sessionFactory.getCurrentSession();
+            return session.createQuery("FROM User WHERE email = :email", User.class)
+                    .setParameter("email", email)
+                    .uniqueResult();
+        } catch (Exception e) {
+            return null;
+        }
     }
+
 }

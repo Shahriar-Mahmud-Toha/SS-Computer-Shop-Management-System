@@ -1,10 +1,4 @@
 package dev.domain;
-
-
-import org.hibernate.validator.constraints.Length;
-import org.springframework.format.annotation.DateTimeFormat;
-
-import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Pattern;
@@ -22,11 +16,13 @@ public class User {
 
     @Id
     @Size(max = 100)
+    @Pattern(regexp = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$", message = "Incorrect email format")
     @Column(name = "email")
     private String email;
 
     @NotNull
     @Size(max = 148)
+    @Pattern(regexp = "^(?=.*[A-Za-z].*[A-Za-z])(?=.*\\d)(?=.*[^A-Za-z\\d\\s].*[^A-Za-z\\d\\s]).{8,}$", message = "* At least 8 characters. * No space allowed. * At least 2 alphabets, 1 number, 2 special characters.")
     @Column(name = "password")
     private String password;
 

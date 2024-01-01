@@ -54,4 +54,17 @@ public class AdminRepository {
         }
         return false;
     }
+    public boolean deleteAdminByEmail(String email) {
+        Session session = sessionFactory.getCurrentSession();
+        var data = getAdminByEmail(email);
+        if(data==null){
+            return false;
+        }
+        Admin admin = session.get(Admin.class, data.getId());
+        if (admin != null) {
+            session.delete(admin);
+            return true;
+        }
+        return false;
+    }
 }
