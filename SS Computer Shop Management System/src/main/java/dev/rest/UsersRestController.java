@@ -41,15 +41,7 @@ public class UsersRestController {
             }
         }
     }
-//    @PostMapping("/users/delete")
-//    public String deleteUser(@RequestBody String email) throws SQLException {
-//        if(usersService.deleteUserByEmail(email)){
-//            return "Account Deleted";
-//        }
-//        else {
-//            return "Account NOT Deleted";
-//        }
-//    }
+
     @GetMapping("/users/delete/{email}")
     public String deleteUser(@PathVariable String email) throws SQLException {
         if(usersService.deleteUserByEmail(email)){
@@ -57,6 +49,34 @@ public class UsersRestController {
         }
         else {
             return "Account NOT Deleted";
+        }
+    }
+    @PostMapping("/users/updateUser")
+    public String updateUser(@Valid @RequestBody User user, BindingResult bindingResult) throws SQLException {
+        if (bindingResult.hasErrors()) {
+            return "failed";
+        }
+        else {
+            if(usersService.updateUser(user)){
+                return "Account Updated Successfully";
+            }
+            else {
+                return "Account Not Updated";
+            }
+        }
+    }
+    @PostMapping("/users/loginAdmin")
+    public String UserLoginForAdmin(@Valid @RequestBody User user, BindingResult bindingResult) throws SQLException {
+        if (bindingResult.hasErrors()) {
+            return "failed";
+        }
+        else {
+            if(usersService.isValidAdmin(user.getEmail(),user.getPassword()) != null ){
+                return "Login Successful";
+            }
+            else {
+                return "Invalid Credentials";
+            }
         }
     }
 }

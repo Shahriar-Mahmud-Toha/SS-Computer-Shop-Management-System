@@ -55,4 +55,34 @@ public class UsersService {
     public boolean deleteUserByEmail(String email) {
         return userRepository.deleteUserByEmail(email);
     }
+    public boolean updateUser(User user){
+        var data = userRepository.getUserByEmail(user.getEmail());
+        if(data==null){
+            return false;
+        }
+        userRepository.Update(user);
+        return true;
+    }
+    public User isValidAdmin(String email, String password){
+        var data = userRepository.isValidUser(email, password);
+        int role_id = roleRepository.getRoleIdByName("ROLE_ADMIN");
+        int role = userHasRoleRepository.getUserRoleIdByEmail(email);
+        if(role==role_id){
+            return data;
+        }
+        else {
+            return null;
+        }
+    }
+    public User isValidCustomer(String email, String password){
+        var data = userRepository.isValidUser(email, password);
+        int role_id = roleRepository.getRoleIdByName("ROLE_CUSTOMER");
+        int role = userHasRoleRepository.getUserRoleIdByEmail(email);
+        if(role==role_id){
+            return data;
+        }
+        else {
+            return null;
+        }
+    }
 }

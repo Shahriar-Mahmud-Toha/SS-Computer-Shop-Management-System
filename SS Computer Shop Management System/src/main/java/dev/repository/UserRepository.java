@@ -43,6 +43,21 @@ public class UserRepository {
         return password;
     }
 
+    public void Update(User user) {
+        Session session = sessionFactory.getCurrentSession();
+
+        // Try to load the existing user from the session
+        User existingUser = session.get(User.class, user.getEmail());
+
+        // If the user is not in the session, or the existing user is not the same instance,
+        // then merge the changes into the session
+        if (existingUser == null || existingUser != user) {
+            existingUser = (User) session.merge(user);
+        }
+
+        // Perform the update
+        session.update(existingUser);
+    }
 
 
     public void save(User user) {
@@ -73,7 +88,7 @@ public class UserRepository {
             System.out.println("No User found for the specified email: " + email);
         }
 
-    return user;
+        return user;
     }
 
     public boolean deleteUserByEmail(String email) {
@@ -94,6 +109,22 @@ public class UserRepository {
         } catch (Exception e) {
             return false;
         }
+    }
+    public User isValidUser(String email, String password){
+        Session session = sessionFactory.getCurrentSession();
+        Query<User> query = session.createQuery("FROM User WHERE email = :email and password=:password", User.class);
+        query.setParameter("email", email);
+        query.setParameter("password", password);
+
+        User user = null;
+
+        try {
+            user = query.getSingleResult();
+        } catch (NoResultException e) {
+//            System.out.println("Invalid User");
+        }
+
+        return user;
     }
 
 
