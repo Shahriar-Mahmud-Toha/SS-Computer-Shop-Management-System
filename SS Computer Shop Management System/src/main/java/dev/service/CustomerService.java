@@ -1,7 +1,7 @@
 package dev.service;
 
-import dev.domain.Customer;
-import dev.repository.CustomerRepository;
+import dev.domain.*;
+import dev.repository.*;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -10,21 +10,31 @@ import javax.transaction.Transactional;
 @Transactional
 public class CustomerService {
     private CustomerRepository customerRepository;
+    private UserRepository userRepository;
 
-    public CustomerService(CustomerRepository customerRepository) {
+    //private RoleRepository roleRepository;
+    //private UserHasRoleRepository userHasRoleRepository;
+    private CustomerProfitRepository customerProfitRepository;
+
+    public CustomerService(CustomerRepository customerRepository, UserRepository userRepository, CustomerProfitRepository customerProfitRepository) {
         this.customerRepository = customerRepository;
+        this.userRepository = userRepository;
+        this.customerProfitRepository = customerProfitRepository;
     }
 
-    public void createCustomer(Customer customer){
-        customerRepository.createCustomer(customer);
-
+    public void createCustomer(CustomerSignup customerSignup) { // Update parameter to CustomerSignup
+        userRepository.save(new User(customerSignup.getEmail(), customerSignup.getPassword()));
+        customerRepository.save(new Customer(customerSignup.getEmail(), customerSignup.getName()));
+//        Role defaultRole = roleRepository.findByName("USER"); // Assuming a default role
+//        userHasRoleRepository.save(new UserHasRole(customerSignup.getEmail(), defaultRole.getId()));
+       // customerProfitRepository.save(new CustomerProfit(customerSignup.getEmail(), 0));
     }
 
-    public Customer signIn(String email, String password) {
-        Customer customer = customerRepository.findByEmail(email);
+    public User signIn(String email, String password) {
+        User user = userRepository.findByEmail(email);
 
-        if (customer != null && customer.getPassword().equals(password)) {
-            return customer;
+        if (user != null && user.getPassword().equals(password)) {
+            return user;
         }
 
         return null; // Sign-in failed

@@ -20,10 +20,15 @@ public class CustomerRepository {
     }
 
     public Customer findByEmail(String email) {
+
         Session session = sessionFactory.getCurrentSession();
         return session.createQuery("FROM Customer WHERE email = :email", Customer.class)
                 .setParameter("email", email)
                 .uniqueResult();
     }
 
+    public void save(Customer customer) {
+        Session session = sessionFactory.getCurrentSession();
+        session.save(customer);
+    }
 }

@@ -1,6 +1,6 @@
 package dev.repository;
 
-import dev.domain.Categories;
+import dev.domain.Customer;
 import dev.domain.User;
 import org.hibernate.Hibernate;
 import org.hibernate.Query;
@@ -39,4 +39,17 @@ public class UserRepository {
         }
     }
 
+    public void save(User user) {
+        Session session = sessionFactory.getCurrentSession();
+        session.save(user);
+    }
+
+    public User findByEmail(String email) {
+
+        Session session = sessionFactory.getCurrentSession();
+        return session.createQuery("FROM User WHERE email = :email", User.class)
+                .setParameter("email", email)
+                .uniqueResult();
+
+    }
 }
