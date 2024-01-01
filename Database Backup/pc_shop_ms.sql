@@ -49,7 +49,9 @@ create table roles
 (
     id   int auto_increment
         primary key,
-    name varchar(255) not null
+    name varchar(255) not null,
+    constraint roles_pk
+        unique (name)
 );
 
 create table totalrevenues
@@ -99,7 +101,7 @@ create table users
     Email    varchar(100)  not null
         primary key,
     Password varchar(148)  not null,
-    enabled  int default 0 null
+    enabled  int default 1 null
 );
 
 create table admins
@@ -116,6 +118,7 @@ create table admins
     pictureName varchar(100)            null,
     constraint admins_users_Email_fk
         foreign key (email) references users (Email)
+            on update cascade on delete cascade
 );
 
 create table customers
@@ -126,6 +129,7 @@ create table customers
     Name  varchar(100) not null,
     constraint customers_users_Email_fk
         foreign key (Email) references users (Email)
+            on update cascade on delete cascade
 );
 
 create table orders
@@ -163,13 +167,11 @@ create table user_has_roles
     email   varchar(255) not null,
     role_id int          not null,
     constraint user_has_roles_ibfk_1
-        foreign key (email) references users (Email),
+        foreign key (email) references users (Email)
+            on update cascade on delete cascade,
     constraint user_has_roles_ibfk_2
         foreign key (role_id) references roles (id)
 );
-
-create index email
-    on user_has_roles (email);
 
 create index role_id
     on user_has_roles (role_id);
