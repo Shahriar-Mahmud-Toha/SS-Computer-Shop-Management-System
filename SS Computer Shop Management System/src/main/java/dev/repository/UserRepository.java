@@ -1,34 +1,30 @@
 package dev.repository;
 
 import dev.domain.Customer;
+import dev.domain.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class CustomerRepository {
+public class UserRepository {
     private SessionFactory sessionFactory;
 
-    public CustomerRepository(SessionFactory sessionFactory) {
+    public UserRepository(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
 
-    public void createCustomer(Customer customer){
+    public void save(User user) {
         Session session = sessionFactory.getCurrentSession();
-        session.save(customer);
-
+        session.save(user);
     }
 
-    public Customer findByEmail(String email) {
+    public User findByEmail(String email) {
 
         Session session = sessionFactory.getCurrentSession();
-        return session.createQuery("FROM Customer WHERE email = :email", Customer.class)
+        return session.createQuery("FROM User WHERE email = :email", User.class)
                 .setParameter("email", email)
                 .uniqueResult();
-    }
 
-    public void save(Customer customer) {
-        Session session = sessionFactory.getCurrentSession();
-        session.save(customer);
     }
 }
