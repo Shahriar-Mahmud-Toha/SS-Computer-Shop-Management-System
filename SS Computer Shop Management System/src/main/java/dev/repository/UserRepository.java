@@ -59,5 +59,20 @@ public class UserRepository {
             return null;
         }
     }
+    public User getUserByEmail(String email) {
+        Session session = sessionFactory.getCurrentSession();
+        Query<User> query = session.createQuery("FROM User WHERE email = :email", User.class);
+        query.setParameter("email", email);
+        User user;
+
+        try {
+            user = query.uniqueResult();
+        } catch (NoResultException e) {
+            user = null;
+            throw new RuntimeException("No password found for the specified email: " + email, e);
+        }
+
+        return user;
+    }
 
 }

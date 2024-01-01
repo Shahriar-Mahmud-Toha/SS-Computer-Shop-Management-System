@@ -1005,7 +1005,7 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
     </schema>
     <schema id="291" parent="1" name="pc_shop_ms">
       <Current>1</Current>
-      <LastIntrospectionLocalTimestamp>2024-01-01.02:08:25</LastIntrospectionLocalTimestamp>
+      <LastIntrospectionLocalTimestamp>2024-01-01.16:02:06</LastIntrospectionLocalTimestamp>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </schema>
     <schema id="292" parent="1" name="performance_schema">
@@ -1486,276 +1486,284 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="392" parent="310" name="PRIMARY">
+    <index id="392" parent="310" name="roles_pk">
+      <ColNames>name</ColNames>
+      <Type>btree</Type>
+      <Unique>1</Unique>
+    </index>
+    <key id="393" parent="310" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="393" parent="311" name="id">
+    <key id="394" parent="310" name="roles_pk">
+      <UnderlyingIndexName>roles_pk</UnderlyingIndexName>
+    </key>
+    <column id="395" parent="311" name="id">
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="394" parent="311" name="year">
+    <column id="396" parent="311" name="year">
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="395" parent="311" name="jan">
+    <column id="397" parent="311" name="jan">
       <DasType>int|0s</DasType>
       <DefaultExpression>0</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="396" parent="311" name="feb">
+    <column id="398" parent="311" name="feb">
       <DasType>int|0s</DasType>
       <DefaultExpression>0</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>4</Position>
     </column>
-    <column id="397" parent="311" name="mar">
+    <column id="399" parent="311" name="mar">
       <DasType>int|0s</DasType>
       <DefaultExpression>0</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>5</Position>
     </column>
-    <column id="398" parent="311" name="apr">
+    <column id="400" parent="311" name="apr">
       <DasType>int|0s</DasType>
       <DefaultExpression>0</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>6</Position>
     </column>
-    <column id="399" parent="311" name="may">
+    <column id="401" parent="311" name="may">
       <DasType>int|0s</DasType>
       <DefaultExpression>0</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>7</Position>
     </column>
-    <column id="400" parent="311" name="jun">
+    <column id="402" parent="311" name="jun">
       <DasType>int|0s</DasType>
       <DefaultExpression>0</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>8</Position>
     </column>
-    <column id="401" parent="311" name="jul">
+    <column id="403" parent="311" name="jul">
       <DasType>int|0s</DasType>
       <DefaultExpression>0</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>9</Position>
     </column>
-    <column id="402" parent="311" name="aug">
+    <column id="404" parent="311" name="aug">
       <DasType>int|0s</DasType>
       <DefaultExpression>0</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>10</Position>
     </column>
-    <column id="403" parent="311" name="sep">
+    <column id="405" parent="311" name="sep">
       <DasType>int|0s</DasType>
       <DefaultExpression>0</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>11</Position>
     </column>
-    <column id="404" parent="311" name="oct">
+    <column id="406" parent="311" name="oct">
       <DasType>int|0s</DasType>
       <DefaultExpression>0</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>12</Position>
     </column>
-    <column id="405" parent="311" name="nov">
+    <column id="407" parent="311" name="nov">
       <DasType>int|0s</DasType>
       <DefaultExpression>0</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>13</Position>
     </column>
-    <column id="406" parent="311" name="dec">
+    <column id="408" parent="311" name="dec">
       <DasType>int|0s</DasType>
       <DefaultExpression>0</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>14</Position>
     </column>
-    <index id="407" parent="311" name="PRIMARY">
+    <index id="409" parent="311" name="PRIMARY">
       <ColNames>id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="408" parent="311" name="totalrevenues_pk">
+    <index id="410" parent="311" name="totalrevenues_pk">
       <ColNames>year</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="409" parent="311" name="PRIMARY">
+    <key id="411" parent="311" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <key id="410" parent="311" name="totalrevenues_pk">
+    <key id="412" parent="311" name="totalrevenues_pk">
       <UnderlyingIndexName>totalrevenues_pk</UnderlyingIndexName>
     </key>
-    <column id="411" parent="312" name="id">
+    <column id="413" parent="312" name="id">
       <AutoIncrement>1</AutoIncrement>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="412" parent="312" name="year">
+    <column id="414" parent="312" name="year">
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="413" parent="312" name="jan">
+    <column id="415" parent="312" name="jan">
       <DasType>int|0s</DasType>
       <DefaultExpression>0</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="414" parent="312" name="feb">
+    <column id="416" parent="312" name="feb">
       <DasType>int|0s</DasType>
       <DefaultExpression>0</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>4</Position>
     </column>
-    <column id="415" parent="312" name="mar">
+    <column id="417" parent="312" name="mar">
       <DasType>int|0s</DasType>
       <DefaultExpression>0</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>5</Position>
     </column>
-    <column id="416" parent="312" name="apr">
+    <column id="418" parent="312" name="apr">
       <DasType>int|0s</DasType>
       <DefaultExpression>0</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>6</Position>
     </column>
-    <column id="417" parent="312" name="may">
+    <column id="419" parent="312" name="may">
       <DasType>int|0s</DasType>
       <DefaultExpression>0</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>7</Position>
     </column>
-    <column id="418" parent="312" name="jun">
+    <column id="420" parent="312" name="jun">
       <DasType>int|0s</DasType>
       <DefaultExpression>0</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>8</Position>
     </column>
-    <column id="419" parent="312" name="jul">
+    <column id="421" parent="312" name="jul">
       <DasType>int|0s</DasType>
       <DefaultExpression>0</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>9</Position>
     </column>
-    <column id="420" parent="312" name="aug">
+    <column id="422" parent="312" name="aug">
       <DasType>int|0s</DasType>
       <DefaultExpression>0</DefaultExpression>
       <Position>10</Position>
     </column>
-    <column id="421" parent="312" name="sep">
+    <column id="423" parent="312" name="sep">
       <DasType>int|0s</DasType>
       <DefaultExpression>0</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>11</Position>
     </column>
-    <column id="422" parent="312" name="oct">
+    <column id="424" parent="312" name="oct">
       <DasType>int|0s</DasType>
       <DefaultExpression>0</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>12</Position>
     </column>
-    <column id="423" parent="312" name="nov">
+    <column id="425" parent="312" name="nov">
       <DasType>int|0s</DasType>
       <DefaultExpression>0</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>13</Position>
     </column>
-    <column id="424" parent="312" name="dec">
+    <column id="426" parent="312" name="dec">
       <DasType>int|0s</DasType>
       <DefaultExpression>0</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>14</Position>
     </column>
-    <index id="425" parent="312" name="PRIMARY">
+    <index id="427" parent="312" name="PRIMARY">
       <ColNames>id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="426" parent="312" name="totalsales_pk">
+    <index id="428" parent="312" name="totalsales_pk">
       <ColNames>year</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="427" parent="312" name="PRIMARY">
+    <key id="429" parent="312" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <key id="428" parent="312" name="totalsales_pk">
+    <key id="430" parent="312" name="totalsales_pk">
       <UnderlyingIndexName>totalsales_pk</UnderlyingIndexName>
     </key>
-    <column id="429" parent="313" name="id">
+    <column id="431" parent="313" name="id">
       <AutoIncrement>1</AutoIncrement>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="430" parent="313" name="email">
+    <column id="432" parent="313" name="email">
       <DasType>varchar(255)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="431" parent="313" name="role_id">
+    <column id="433" parent="313" name="role_id">
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <foreign-key id="432" parent="313" name="user_has_roles_ibfk_1">
+    <foreign-key id="434" parent="313" name="user_has_roles_ibfk_1">
       <ColNames>email</ColNames>
       <RefColNames>Email</RefColNames>
       <RefTableName>users</RefTableName>
     </foreign-key>
-    <foreign-key id="433" parent="313" name="user_has_roles_ibfk_2">
+    <foreign-key id="435" parent="313" name="user_has_roles_ibfk_2">
       <ColNames>role_id</ColNames>
       <RefColNames>id</RefColNames>
       <RefTableName>roles</RefTableName>
     </foreign-key>
-    <index id="434" parent="313" name="PRIMARY">
+    <index id="436" parent="313" name="PRIMARY">
       <ColNames>id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="435" parent="313" name="email">
+    <index id="437" parent="313" name="email">
       <ColNames>email</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="436" parent="313" name="role_id">
+    <index id="438" parent="313" name="role_id">
       <ColNames>role_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="437" parent="313" name="PRIMARY">
+    <key id="439" parent="313" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="438" parent="314" name="Email">
+    <column id="440" parent="314" name="Email">
       <DasType>varchar(100)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="439" parent="314" name="Password">
+    <column id="441" parent="314" name="Password">
       <DasType>varchar(148)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="440" parent="314" name="enabled">
+    <column id="442" parent="314" name="enabled">
       <DasType>int|0s</DasType>
       <DefaultExpression>0</DefaultExpression>
       <Position>3</Position>
     </column>
-    <index id="441" parent="314" name="PRIMARY">
+    <index id="443" parent="314" name="PRIMARY">
       <ColNames>Email</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="442" parent="314" name="PRIMARY">
+    <key id="444" parent="314" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
