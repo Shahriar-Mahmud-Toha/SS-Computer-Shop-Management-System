@@ -1,5 +1,6 @@
 package dev.repository;
 
+import dev.domain.Admin;
 import dev.domain.Customer;
 import dev.domain.User;
 import org.hibernate.Hibernate;
@@ -49,30 +50,51 @@ public class UserRepository {
         session.save(user);
     }
 
-    public User findByEmail(String email) {
-        try {
-            Session session = sessionFactory.getCurrentSession();
-            return session.createQuery("FROM User WHERE email = :email", User.class)
-                    .setParameter("email", email)
-                    .uniqueResult();
-        } catch (Exception e) {
-            return null;
-        }
-    }
+//    public User findByEmail(String email) {
+//        try {
+//            Session session = sessionFactory.getCurrentSession();
+//            return session.createQuery("FROM User WHERE email = :email", User.class)
+//                    .setParameter("email", email)
+//                    .uniqueResult();
+//        } catch (Exception e) {
+//            return null;
+//        }
+//    }
     public User getUserByEmail(String email) {
         Session session = sessionFactory.getCurrentSession();
         Query<User> query = session.createQuery("FROM User WHERE email = :email", User.class);
         query.setParameter("email", email);
-        User user;
+
+        User user = null;
 
         try {
-            user = query.uniqueResult();
+            user = query.getSingleResult();
         } catch (NoResultException e) {
-            user = null;
-            throw new RuntimeException("No password found for the specified email: " + email, e);
+            System.out.println("No User found for the specified email: " + email);
         }
 
-        return user;
+    return user;
     }
+
+    public boolean deleteUserByEmail(String email) {
+        Session session = sessionFactory.getCurrentSession();
+        var data = getUserByEmail(email);
+
+        if (data == null) {
+            return false;
+        }
+
+        // Use merge to reattach the entity to the session
+        data = (User) session.merge(data);
+
+        try {
+
+            session.delete(data);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
 
 }

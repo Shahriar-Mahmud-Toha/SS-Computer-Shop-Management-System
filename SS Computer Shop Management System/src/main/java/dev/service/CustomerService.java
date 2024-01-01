@@ -31,7 +31,7 @@ public class CustomerService {
     }
 
     public User signIn(String email, String password) {
-        User user = userRepository.findByEmail(email);
+        User user = userRepository.getUserByEmail(email);
 
         if (user != null && user.getPassword().equals(password)) {
             return user;

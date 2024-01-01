@@ -32,7 +32,7 @@ public class UsersService {
         return userRepository.getUserPasswordByEmail(email);
     }
     public User getUserByEmail(String email){
-        return userRepository.findByEmail(email);
+        return userRepository.getUserByEmail(email);
     }
     public boolean save(User user, String role_name) {
         try {
@@ -51,5 +51,8 @@ public class UsersService {
         catch (Exception exception){
             return false;
         }
+    }
+    public boolean deleteUserByEmail(String email) {
+        return userRepository.deleteUserByEmail(email);
     }
 }

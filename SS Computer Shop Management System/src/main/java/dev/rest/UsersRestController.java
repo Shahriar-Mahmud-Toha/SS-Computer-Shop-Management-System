@@ -41,4 +41,22 @@ public class UsersRestController {
             }
         }
     }
+//    @PostMapping("/users/delete")
+//    public String deleteUser(@RequestBody String email) throws SQLException {
+//        if(usersService.deleteUserByEmail(email)){
+//            return "Account Deleted";
+//        }
+//        else {
+//            return "Account NOT Deleted";
+//        }
+//    }
+    @GetMapping("/users/delete/{email}")
+    public String deleteUser(@PathVariable String email) throws SQLException {
+        if(usersService.deleteUserByEmail(email)){
+            return "Account Deleted";
+        }
+        else {
+            return "Account NOT Deleted";
+        }
+    }
 }
